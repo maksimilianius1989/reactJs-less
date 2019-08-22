@@ -1,16 +1,16 @@
 import React from 'react';
 
 export default class extends React.Component {
-    constructor(props) {
-        super(props);
+    state = {
+        cnt: 1
+    };
 
-        this.state = {
-            cnt: 1
-        };
-    }
+    increase = () => {
+        this.setState({
+            cnt: this.state.cnt + 1
+        });
 
-    increase() {
-        console.log('mf', this);
+        console.log('mf', this.state);
     }
 
     render() {
@@ -18,7 +18,7 @@ export default class extends React.Component {
             <div>
                 <strong>{this.state.cnt}</strong>
                 <br/>
-                <button onClick={this.increase.bind(this)}>Plus 1</button>
+                <button onClick={this.increase}>Plus 1</button>
             </div>
         );
     }
