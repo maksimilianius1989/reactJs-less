@@ -35,21 +35,16 @@ export default class extends React.Component {
     }
 
     changeCurrent = (e) => {
-        console.log('mf', 111);
         let value = +e.target.value;
-        console.log('mf', 222);
-        console.log('mf', 'change current', value);
         if (!this.isValid(value)) return
 
         this.setCurrent(value);
     }
 
     isValid(value) {
-        console.log('mf', 'start val', value);
         if(isNaN(value)
             || value > this.props.max
             || value < this.props.min) {
-            console.log('mf', 'is not valid');
             return false
         }
         return true;
