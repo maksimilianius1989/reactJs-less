@@ -1,19 +1,34 @@
-import React from 'react'
-import CounterClass from './counters/class'
-import CounterFunction from './counters/function'
-import MyComponent from './counters/my_component'
+import React, {useState} from 'react'
+import HW1 from './hw/simple'
+import HW2 from './hw/input'
+import Lazy from './hw/lazy'
+import Derived from './hw/deriveds'
 
-export default function() {
-    return (
-        <div>
-            <h2>Counter as class</h2>
-            <CounterClass/>
+export default class extends React.Component {
+    state = {
+        products: [
+            {
+                id: 100,
+                title: 'Iphone 200',
+                price: 12000,
+                rest: 10,
+                current: 1
+            },
+            {
+                id: 101,
+                title: 'Samsung 200',
+                price: 22000,
+                rest: 5,
+                current: 1
+            }
+        ]
+    }
 
-            <h2>Counter as function</h2>
-            <CounterFunction/>
-
-            <h2>My component</h2>
-            <MyComponent min={2} max={5}/>
-        </div>
-    );
+    render() {
+        return (
+            <div>
+                <h2>Cart</h2>
+            </div>
+        )
+    }
 }
