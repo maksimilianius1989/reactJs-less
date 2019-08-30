@@ -19,6 +19,10 @@ export default class extends React.Component {
     }
 
     render() {
+        let total = this.state.products.reduce((total, product) => {
+            return total + (product.current * product.price)
+        }, 0)
+
         let productsRows = this.state.products.map((el, i) => {
             return (
                 <tr key={el.id}>
@@ -59,6 +63,7 @@ export default class extends React.Component {
                         {productsRows}
                     </tbody>
                 </table>
+                <h4>{total}</h4>
             </div>
         )
     }
