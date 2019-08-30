@@ -2,10 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 export default class Some extends React.Component {
+    static defaultProps = {
+        onChange: function(cnt) {
+            console.log('mf', cnt);
+        }
+    }
+
     static propTypes = {
         min: PropTypes.number.isRequired,
         max: PropTypes.number.isRequired,
-        cnt: PropTypes.number.isRequired
+        cnt: PropTypes.number.isRequired,
+        onChange: PropTypes.func
     }
 
     state = {
@@ -13,11 +20,11 @@ export default class Some extends React.Component {
     }
 
     increase = () => {
-        this.set(this.state.cnt + 1)
+        this.set(this.props.cnt + 1)
     }
 
     decrease = () => {
-        this.set(this.state.cnt - 1)
+        this.set(this.props.cnt - 1)
     }
 
     set(newCnt) {
@@ -25,9 +32,8 @@ export default class Some extends React.Component {
         this.setState({
             inputValue : cnt
         })
-
         //update cnt
-
+        this.props.onChange(cnt)
     }
 
     setValue(newStr) {
@@ -44,9 +50,6 @@ export default class Some extends React.Component {
     render() {
         return (
             <div>
-                {this.props.min}<br/>
-                {this.state.cnt}<br/>
-                {this.state.inputValue}<br/>
                 <button onClick={this.decrease}>-</button>
                 <input value={this.state.inputValue}
                         onChange={(e) => this.setValue(e.target.value)}
