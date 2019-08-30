@@ -3,7 +3,8 @@ import AppMinMax from './hw/norm'
 
 export default class extends React.Component {
     state = {
-        products: getProducts()
+        products: getProducts(),
+        formDone: false
     }
 
     changeCnt(i, cnt) {
@@ -16,6 +17,10 @@ export default class extends React.Component {
         let products = [...this.state.products];
         products.splice(i, 1)
         this.setState({products})
+    }
+
+    sendForm = () => {
+        this.setState({formDone: true})
     }
 
     render() {
@@ -46,29 +51,48 @@ export default class extends React.Component {
             )
         })
 
+        let page = !this.state.formDone ? showForm(productsRows, total, this.sendForm) : showCongrats()
+        console.log('--------------->', 'page', page)
         return (
             <div>
-                <h2>Cart</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>Title</td>
-                            <td>Price</td>
-                            <td>Count</td>
-                            <td>Total</td>
-                            <td>Actions</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {productsRows}
-                    </tbody>
-                </table>
-                <h4>{total}</h4>
+                {page}
             </div>
         )
     }
 }
 
+function showForm(productsRows, total, sendForm) {
+    return (
+        <div>
+            <h2>Cart</h2>
+            <table>
+                <thead>
+                <tr>
+                    <td>Title</td>
+                    <td>Price</td>
+                    <td>Count</td>
+                    <td>Total</td>
+                    <td>Actions</td>
+                </tr>
+                </thead>
+                <tbody>
+                {productsRows}
+                </tbody>
+            </table>
+            <h4>{total}</h4>
+            <hr/>
+            <button onClick={sendForm}>Send</button>
+        </div>
+    )
+}
+
+function showCongrats() {
+    return (
+        <div>
+            <span>Данные отправлены успешно</span>
+        </div>
+    )
+}
 
 function getProducts() {
     return [
