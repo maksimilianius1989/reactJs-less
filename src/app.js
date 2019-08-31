@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import AppMinMax from './hw/norm'
+import React from 'react'
+import AppMinMax from './inputs/minmax'
 
 export default class extends React.Component {
     state = {
@@ -14,7 +14,7 @@ export default class extends React.Component {
     }
 
     remove(i) {
-        let products = [...this.state.products];
+        let products = [...this.state.products]
         products.splice(i, 1)
         this.setState({products})
     }
@@ -52,10 +52,12 @@ export default class extends React.Component {
         })
 
         let page = !this.state.formDone ? showForm(productsRows, total, this.sendForm) : showCongrats()
-        console.log('--------------->', 'page', page)
+
         return (
             <div>
                 {page}
+                <hr/>
+                <button onClick={() => this.changeCnt(1, 4)}>Unreal change cnt</button>
             </div>
         )
     }
