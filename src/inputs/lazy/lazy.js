@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default class Some extends React.Component {
+export default class extends React.Component {
     static defaultProps = {
         onChange: function(cnt) {
             console.log('--------------->', cnt)
@@ -13,24 +13,29 @@ export default class Some extends React.Component {
         onChange: PropTypes.func
     }
 
-    state = {
-        inputValue: this.props.cnt
-    }
-
     componentDidUpdate(prevProps, prevState, snapshot) {
 
     }
 
+    checkChange = (e) => {
+        if (this.props.value.toString() !== e.target.value) {
+            this.props.onChange(e)
+        }
+    }
+
+    checkEnterKey = (e) => {
+        if (e.keyCode === 13) {
+            this.checkChange(e)
+        }
+    }
 
     render() {
         return (
-            <div>
-                <button onClick={this.decrease}>-</button>
-                <input value={this.state.inputValue}
-                        onChange={(e) => this.setValue(e.target.value)}
-                        onBlur={this.applyValue}/>
-                <button onClick={this.increase}>+</button>
-            </div>
+            <input
+                defaultValue={this.props.value}
+                onBlur={this.checkChange}
+                onKeyUp={this.checkEnterKey}
+            />
         )
     }
 }
