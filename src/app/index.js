@@ -1,6 +1,8 @@
 import React from 'react'
 import style from './app-module.css'
-import { Button } from "react-bootstrap"
+import Cart from '~/cart'
+import Order from '~/order'
+import Result from '~/result'
 
 export default class extends React.Component {
     state = {
@@ -50,17 +52,17 @@ export default class extends React.Component {
         let page
 
         switch(this.state.activeRoute) {
-            // case 'CART':
-            //     page = <Cart/>
-            //     break;
-            //
-            // case 'ORDER':
-            //     page = <Order/>
-            //     break;
-            //
-            // case 'RESULT':
-            //     page = <Result/>
-            //     break;
+            case 'CART':
+                page = <Cart/>
+                break;
+
+            case 'ORDER':
+                page = <Order/>
+                break;
+
+            case 'RESULT':
+                page = <Result/>
+                break;
             default:
                 page = <div>404</div>
         }
