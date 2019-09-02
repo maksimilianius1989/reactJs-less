@@ -4,13 +4,14 @@ import PropTypes from 'prop-types'
 export default class extends React.Component {
     static defaultProps = {
         onChange: function(cnt) {
-            console.log('--------------->', cnt)
-        }
+            console.log('---------------> defaultProps onChange()', cnt)
+        },
+        nativeProps: {}
     }
 
     static propTypes = {
         value: PropTypes.any.isRequired,
-        onChange: PropTypes.func
+        nativeProps: PropTypes.object
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -32,6 +33,7 @@ export default class extends React.Component {
     render() {
         return (
             <input
+                {...this.props.nativeProps}
                 defaultValue={this.props.value}
                 onBlur={this.checkChange}
                 onKeyUp={this.checkEnterKey}

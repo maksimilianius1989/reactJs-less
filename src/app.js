@@ -14,10 +14,21 @@ export default class extends React.Component {
                 <h2>Lazy input</h2>
                 <p>{this.state.inp1}</p>
                 <AppInput
+                    nativeProps={{type: 'text', className: 'some'}}
                     value={this.state.inp1}
                     onChange={(e) => this.setState({
                         inp1: e.target.value
                     })}
+                />
+                <h2>Lazy input NO lazy</h2>
+                <p>{this.state.inp2}</p>
+                <AppInput
+                    nativeProps={{
+                        type: 'text',
+                        className: 'some',
+                        onChange: (e) => this.setState({inp2: e.target.value})
+                    }}
+                    value={this.state.inp2}
                 />
             </div>
         )
