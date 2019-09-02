@@ -31,7 +31,9 @@ export default class extends React.Component {
                     </td>
                     <td>{el.price * el.current}</td>
                     <td>
-                        <button onClick={() => this.props.onRemove(i)}>
+                        <button
+                            className="btn btn-danger"
+                            onClick={() => this.props.onRemove(i)}>
                             X
                         </button>
                     </td>
@@ -58,7 +60,9 @@ export default class extends React.Component {
                 </table>
                 <h3>Total: {total}</h3>
                 <hr/>
-                <button onClick={this.props.onSend}>Send</button>
+                <button
+                    className="btn btn-success"
+                    onClick={this.props.onSend}>Send</button>
             </div>
         )
     }
