@@ -24,13 +24,13 @@ export default class extends React.Component {
         activeRoute: 'CART'
     }
 
-    changeCnt(i, cnt) {
+    changeCnt = (i, cnt) => {
         let products = [...this.state.products]
         products[i] = {...products[i], current: cnt}
         this.setState({products})
     }
 
-    remove(i) {
+    remove = (i) => {
         let products = [...this.state.products]
         products.splice(i, 1)
         this.setState({products})
@@ -53,7 +53,12 @@ export default class extends React.Component {
 
         switch(this.state.activeRoute) {
             case 'CART':
-                page = <Cart/>
+                page = <Cart
+                    products={this.state.products}
+                    onChange={this.changeCnt}
+                    onRemove={this.remove}
+                    onSend={this.moveToOrder}
+                />
                 break;
 
             case 'ORDER':
@@ -73,46 +78,6 @@ export default class extends React.Component {
             </div>
         )
     }
-}
-
-function showForm(productsRows, total, sendForm) {
-    return (
-        <div>
-            <h2>Cart</h2>
-            <table>
-                <thead>
-                <tr>
-                    <td>Title</td>
-                    <td>Price</td>
-                    <td>Count</td>
-                    <td>Total</td>
-                    <td>Actions</td>
-                </tr>
-                </thead>
-                <tbody>
-                {productsRows}
-                </tbody>
-            </table>
-            <h4>{total}</h4>
-            <hr/>
-            <button onClick={sendForm}>Send</button>
-            <br/>
-            <input className={style.input} />
-            <br/>
-            <Button variant="primary">
-                Bootstrap Button 1
-            </Button>
-        </div>
-    )
-}
-
-function showCongrats() {
-    return (
-        <div>
-            <span>Данные отправлены успешно</span>
-        </div>
-
-    )
 }
 
 function getProducts() {
