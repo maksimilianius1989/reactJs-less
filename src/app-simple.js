@@ -1,6 +1,7 @@
 import React from 'react'
 import AppMinMax from './inputs/minmax/minmax'
-import style from './app.css'
+import style from './app-module.css'
+import { Button } from "react-bootstrap"
 
 export default class extends React.Component {
     state = {
@@ -87,6 +88,10 @@ function showForm(productsRows, total, sendForm) {
             <button onClick={sendForm}>Send</button>
             <br/>
             <input className={style.input} />
+            <br/>
+            <Button variant="primary">
+                Bootstrap Button 1
+            </Button>
         </div>
     )
 }

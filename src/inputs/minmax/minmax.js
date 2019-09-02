@@ -1,11 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import AppLazyInput from './../lazy/lazy'
-import styles from './minmax.css'
+import styles from './minmax-module.css'
 
-console.log('--------------->', styles)
-
-export default class Some extends React.Component {
+export default class extends React.Component {
     static defaultProps = {
         onChange: function(cnt) {
             console.log('--------------->', cnt)

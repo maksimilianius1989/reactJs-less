@@ -30,7 +30,7 @@ let conf = {
                 }
             },
             {
-                test: /\.css$/,
+                test: /\-module\.css$/,
                 exclude: /node_modules/,
                 use: [
                     {
@@ -48,6 +48,18 @@ let conf = {
                             }
                         },
                     }
+                ]
+            },
+            {
+                test: /^((?!\-module).)*css$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            hmr: process.env.NODE_ENV === 'development',
+                        }
+                    },
+                    'css-loader'
                 ]
             }
         ]
