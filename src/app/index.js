@@ -1,12 +1,25 @@
 import React from 'react'
-import AppMinMax from './inputs/minmax/minmax'
 import style from './app-module.css'
 import { Button } from "react-bootstrap"
 
 export default class extends React.Component {
     state = {
         products: getProducts(),
-        formDone: false
+        formData: {
+            name: {
+                label: 'Your Name',
+                value: ''
+            },
+            email: {
+                label: 'Email',
+                value: ''
+            },
+            phone: {
+                label: 'Phone',
+                value: ''
+            }
+        },
+        activeRoute: 'CART'
     }
 
     changeCnt(i, cnt) {
@@ -21,45 +34,40 @@ export default class extends React.Component {
         this.setState({products})
     }
 
-    sendForm = () => {
-        this.setState({formDone: true})
+    moveToCart = () => {
+        this.setState({activeRoute: 'CART'})
+    }
+
+    moveToOrder = () => {
+        this.setState({activeRoute: 'ORDER'})
+    }
+
+    moveToResult = () => {
+        this.setState({activeRoute: 'RESULT'})
     }
 
     render() {
-        let total = this.state.products.reduce((total, product) => {
-            return total + (product.current * product.price)
-        }, 0)
+        let page
 
-        let productsRows = this.state.products.map((el, i) => {
-            return (
-                <tr key={el.id}>
-                    <td>{el.title}</td>
-                    <td>{el.price}</td>
-                    <td>
-                        <AppMinMax
-                            min={1}
-                            max={el.rest}
-                            cnt={el.current}
-                            onChange={(cnt) => this.changeCnt(i, cnt)}
-                        />
-                    </td>
-                    <td>{el.price * el.current}</td>
-                    <td>
-                        <button onClick={() => this.remove(i)}>
-                            X
-                        </button>
-                    </td>
-                </tr>
-            )
-        })
-
-        let page = !this.state.formDone ? showForm(productsRows, total, this.sendForm) : showCongrats()
+        switch(this.state.activeRoute) {
+            // case 'CART':
+            //     page = <Cart/>
+            //     break;
+            //
+            // case 'ORDER':
+            //     page = <Order/>
+            //     break;
+            //
+            // case 'RESULT':
+            //     page = <Result/>
+            //     break;
+            default:
+                page = <div>404</div>
+        }
 
         return (
-            <div>
+            <div className="container">
                 {page}
-                <hr/>
-                <button onClick={() => this.changeCnt(1, 4)}>Unreal change cnt</button>
             </div>
         )
     }
