@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import AppLazyInput from './../lazy/lazy'
-import './minmax.css'
+import styles from './minmax.css'
+
+console.log('--------------->', styles)
 
 export default class Some extends React.Component {
     static defaultProps = {
@@ -41,7 +43,7 @@ export default class Some extends React.Component {
             <div>
                 <button onClick={this.decrease}>-</button>
                 <AppLazyInput
-                    nativeProps={{className: 'input'}}
+                    nativeProps={{className: styles.input}}
                     value={this.props.cnt}
                     onChange={this.onChange}
                 />

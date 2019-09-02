@@ -39,7 +39,15 @@ let conf = {
                             hmr: process.env.NODE_ENV === 'development',
                         }
                     },
-                    'css-loader'
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1,
+                            modules: {
+                                localIdentName: '[local]_[sha1:hash:hex:7]'
+                            }
+                        },
+                    }
                 ]
             }
         ]

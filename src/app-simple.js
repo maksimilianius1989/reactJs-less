@@ -1,5 +1,6 @@
 import React from 'react'
 import AppMinMax from './inputs/minmax/minmax'
+import style from './app.css'
 
 export default class extends React.Component {
     state = {
@@ -84,6 +85,8 @@ function showForm(productsRows, total, sendForm) {
             <h4>{total}</h4>
             <hr/>
             <button onClick={sendForm}>Send</button>
+            <br/>
+            <input className={style.input} />
         </div>
     )
 }
@@ -93,6 +96,7 @@ function showCongrats() {
         <div>
             <span>Данные отправлены успешно</span>
         </div>
+
     )
 }
 
