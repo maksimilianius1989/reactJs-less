@@ -30,6 +30,12 @@ export default class extends React.Component {
                     }}
                     value={this.state.inp2}
                 />
+                <br/>
+                <button
+                    onClick={(e) => this.setState({inp1: 'test'})}
+                >
+                    Unreal change
+                </button>
             </div>
         )
     }

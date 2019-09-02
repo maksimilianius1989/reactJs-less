@@ -14,8 +14,15 @@ export default class extends React.Component {
         nativeProps: PropTypes.object
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    nativeInput = React.createRef()
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('---------------> this.props.value', this.props.value)
+        console.log('---------------> prevProps.value', prevProps.value)
+        let inp = this.nativeInput.current
+        if (prevProps.value !== this.props.value) {
+            inp.value = this.props.value
+        }
     }
 
     checkChange = (e) => {
@@ -37,6 +44,7 @@ export default class extends React.Component {
                 defaultValue={this.props.value}
                 onBlur={this.checkChange}
                 onKeyUp={this.checkEnterKey}
+                ref={this.nativeInput}
             />
         )
     }
