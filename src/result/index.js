@@ -5,7 +5,8 @@ export default class extends React.Component {
     render() {
         return (
             <div>
-                Result
+                <h2>Congratulations!</h2>
+                <p>123</p>
             </div>
         )
     }

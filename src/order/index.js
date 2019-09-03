@@ -1,6 +1,6 @@
 import React from 'react'
 import PropType from 'prop-types'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Modal } from 'react-bootstrap'
 
 export default class extends React.Component {
     static propTypes = {
@@ -8,6 +8,23 @@ export default class extends React.Component {
         onChange: PropType.func.isRequired,
         onSend: PropType.func.isRequired,
         onBack: PropType.func.isRequired
+    }
+
+    state = {
+        showModal: false
+    }
+
+    show = () => {
+        this.setState({showModal: true})
+    }
+
+    hide = () => {
+        this.setState({showModal: false})
+    }
+
+    confirm = () => {
+        this.hide()
+        this.props.onSend()
     }
 
     render() {
@@ -42,9 +59,26 @@ export default class extends React.Component {
                 &nbsp;
                 <Button
                     variant="primary"
-                    onClick={this.props.onSend}>
+                    onClick={this.show}>
                     Apply order
                 </Button>
+
+                <Modal show={this.state.showModal} backdrop='static'>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Check information</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        content
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={this.hide}>
+                            Ooops
+                        </Button>
+                        <Button variant="primary" onClick={this.confirm}>
+                            All right
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
             </div>
         )
     }
