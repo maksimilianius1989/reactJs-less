@@ -36,6 +36,12 @@ export default class extends React.Component {
         this.setState({products})
     }
 
+    changeFormDate = (name, value) => {
+        let formData = {...this.state.formData}
+        formData[name] = {...formData[name], value: value}
+        this.setState({formData})
+    }
+
     moveToCart = () => {
         this.setState({activeRoute: 'CART'})
     }

@@ -18,7 +18,11 @@ export default class extends React.Component {
             formFields.push(
                 <Form.Group key={name} controlId={'order-form-' + name}>
                     <Form.Label>{field.label}</Form.Label>
-                    <Form.Control type="text" />
+                    <Form.Control
+                        type="text"
+                        value={field.value}
+                        onChange={(e) => this.props.onChange(name, e.target.value)}
+                    />
                 </Form.Group>
             )
         }
@@ -30,6 +34,17 @@ export default class extends React.Component {
                 <Form>
                     {formFields}
                 </Form>
+                <Button
+                    variant="warning"
+                    onClick={this.props.onBack}>
+                    Back to Cart
+                </Button>
+                &nbsp;
+                <Button
+                    variant="primary"
+                    onClick={this.props.onSend}>
+                    Apply order
+                </Button>
             </div>
         )
     }
