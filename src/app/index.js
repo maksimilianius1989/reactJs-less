@@ -6,7 +6,6 @@ import Result from '~p/result'
 
 export default class extends React.Component {
     state = {
-        products: getProducts(),
         formData: {
             name: {
                 label: 'Your Name',
@@ -22,18 +21,6 @@ export default class extends React.Component {
             }
         },
         activeRoute: 'CART'
-    }
-
-    changeCnt = (i, cnt) => {
-        let products = [...this.state.products]
-        products[i] = {...products[i], current: cnt}
-        this.setState({products})
-    }
-
-    remove = (i) => {
-        let products = [...this.state.products]
-        products.splice(i, 1)
-        this.setState({products})
     }
 
     changeFormDate = (name, value) => {
@@ -60,9 +47,6 @@ export default class extends React.Component {
         switch(this.state.activeRoute) {
             case 'CART':
                 page = <Cart
-                    products={this.state.products}
-                    onChange={this.changeCnt}
-                    onRemove={this.remove}
                     onSend={this.moveToOrder}
                 />
                 break;
@@ -85,27 +69,10 @@ export default class extends React.Component {
 
         return (
             <div className="container">
+                <button onClick={() => this.forceUpdate()}>upd</button>
+                <br/>
                 {page}
             </div>
         )
     }
-}
-
-function getProducts() {
-    return [
-        {
-            id: 100,
-            title: 'Iphone 200',
-            price: 12000,
-            rest: 10,
-            current: 1
-        },
-        {
-            id: 101,
-            title: 'Samsung 200',
-            price: 22000,
-            rest: 5,
-            current: 1
-        }
-    ]
 }

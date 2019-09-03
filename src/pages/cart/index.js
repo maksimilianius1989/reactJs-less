@@ -1,22 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import AppMinMax from '~c/inputs/minmax'
+import cartModel from '~s/cart'
 
 export default class extends React.Component {
     static propTypes = {
-        products: PropTypes.array.isRequired,
-        onSend: PropTypes.func.isRequired,
-        onChange: PropTypes.func.isRequired,
-        onRemove: PropTypes.func.isRequired
+        onSend: PropTypes.func.isRequired
     }
 
     render() {
-        let total = this.props.products.reduce((total, product) => {
+        let total = cartModel.products.reduce((total, product) => {
             return total + (product.current * product.price)
         }, 0)
 
-        let productsRows = this.props.products.map((el, i) => {
-            console.log('--------------->', el, i)
+        let productsRows = cartModel.products.map((el, i) => {
             return (
                 <tr key={el.id}>
                     <td>{el.title}</td>
@@ -26,14 +23,14 @@ export default class extends React.Component {
                             min={1}
                             max={el.rest}
                             cnt={el.current}
-                            onChange={(cnt) => this.props.onChange(i, cnt)}
+                            onChange={(cnt) => cartModel.change(i, cnt)}
                         />
                     </td>
                     <td>{el.price * el.current}</td>
                     <td>
                         <button
                             className="btn btn-danger"
-                            onClick={() => this.props.onRemove(i)}>
+                            onClick={() => cartModel.remove(i)}>
                             X
                         </button>
                     </td>
@@ -58,7 +55,7 @@ export default class extends React.Component {
                     {productsRows}
                     </tbody>
                 </table>
-                <h3>Total: {total}</h3>
+                <h3>Total: {cartModel.total}</h3>
                 <hr/>
                 <button
                     className="btn btn-success"
