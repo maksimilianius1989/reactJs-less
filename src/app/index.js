@@ -1,8 +1,8 @@
 import React from 'react'
 import style from './app-module.css'
-import Cart from '~/cart'
-import Order from '~/order'
-import Result from '~/result'
+import Cart from '~p/cart'
+import Order from '~p/order'
+import Result from '~p/result'
 
 export default class extends React.Component {
     state = {
