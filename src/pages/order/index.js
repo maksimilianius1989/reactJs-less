@@ -1,12 +1,12 @@
 import React from 'react'
-import PropType from 'prop-types'
-import { Form, Button, Modal } from 'react-bootstrap'
+import PropTypes from 'prop-types'
+import {Form, Button, Modal} from 'react-bootstrap'
 
-export default class extends React.Component {
-    render() {
+export default class extends React.Component{
+    render(){
         return (
             <div>
-               Order
+                <h2>Order</h2>
             </div>
         )
     }

@@ -1,13 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import AppLazyInput from '~c/inputs/lazy'
-import styles from './minmax-module.css'
+import styles from './minmax.module.css'
 
-export default class extends React.Component {
+export default class extends React.Component{
     static defaultProps = {
-        onChange: function(cnt) {
-            console.log('--------------->', cnt)
-        }
+        onChange: function(cnt){}
     }
 
     static propTypes = {
@@ -27,7 +25,7 @@ export default class extends React.Component {
         this.set(this.props.cnt - 1)
     }
 
-    set(newCnt) {
+    set(newCnt){
         let cnt = Math.min(Math.max(newCnt, this.props.min), this.props.max)
         this.props.onChange(cnt)
         return cnt
@@ -36,19 +34,18 @@ export default class extends React.Component {
     onChange = (e) => {
         let cnt = parseInt(e.target.value)
         let realCnt = this.set(isNaN(cnt) ? this.props.min : cnt)
-        
-        if (realCnt.toString() !== e.target.value) {
-            console.log('--------------->', 'hard set value')
+
+        if(realCnt.toString() !== e.target.value){
             this.lazyInput.current.setValue(realCnt)
         }
     }
 
-    render() {
+    render(){
         return (
             <div>
                 <button onClick={this.decrease}>-</button>
                 <AppLazyInput
-                    nativeProps={{className: styles.input}}
+                    nativeProps={{type: 'text', className: styles.input}}
                     value={this.props.cnt}
                     onChange={this.onChange}
                     ref={this.lazyInput}

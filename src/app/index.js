@@ -1,14 +1,17 @@
 import React from 'react'
-import style from './app-module.css'
+import styles from './app.module.css'
 import router from '~s/router'
-import {observer} from "mobx-react"
+import {observer} from 'mobx-react'
 
-export default @observer class extends React.Component {
-    render() {
+@observer class App extends React.Component{
+    render(){
         return (
             <div className="container">
+                <hr/>
                 {router.component}
             </div>
         )
     }
 }
+
+export default App

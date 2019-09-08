@@ -1,13 +1,13 @@
 import React from 'react'
-import PropType from 'prop-types'
-import cartModel from '~s/cart'
 
-export default class extends React.Component {
-    render() {
+import cartModel from '~s/cart.js'
+
+export default class extends React.Component{
+    render(){
         return (
             <div>
                 <h2>Congratulations!</h2>
-                <p>{cartModel.total}</p>
+                <p><strong>Total: {cartModel.total}</strong></p>
             </div>
         )
     }
