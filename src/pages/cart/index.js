@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import AppMinMax from '~c/inputs/minmax'
-
 import cartModel from '~s/cart.js'
-
 import {observer} from 'mobx-react'
+import {Link} from 'react-router-dom'
+import {routesMap} from "~/routes"
 
 @observer class Cart extends React.Component{
     render(){
@@ -49,9 +49,7 @@ import {observer} from 'mobx-react'
                 </table>
                 <h3>Total: {cartModel.total}</h3>
                 <hr/>
-                <button className="btn btn-primary" onClick={this.prevStep}>
-                    Send
-                </button>
+                <Link to={routesMap.order}  className="btn btn-primary">Send</Link>
             </div>
         )
     }
