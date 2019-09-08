@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import AppMinMax from '~c/inputs/minmax'
 import cartModel from '~s/cart'
+import router from '~s/router'
 
 export default class extends React.Component {
     static propTypes = {
@@ -9,10 +10,6 @@ export default class extends React.Component {
     }
 
     render() {
-        let total = cartModel.products.reduce((total, product) => {
-            return total + (product.current * product.price)
-        }, 0)
-
         let productsRows = cartModel.products.map((el, i) => {
             return (
                 <tr key={el.id}>
@@ -59,7 +56,7 @@ export default class extends React.Component {
                 <hr/>
                 <button
                     className="btn btn-success"
-                    onClick={this.props.onSend}>Send</button>
+                    onClick={() => router.moveTo('order')}>Send</button>
             </div>
         )
     }
