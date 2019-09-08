@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import {Form, Button, Modal} from 'react-bootstrap'
 import {observer} from 'mobx-react'
 import orderModel from '~s/order'
-import router from '~s/router'
 import cartModel from '~s/cart'
 
 export default @observer class extends React.Component{

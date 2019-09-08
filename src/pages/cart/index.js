@@ -3,15 +3,10 @@ import PropTypes from 'prop-types'
 import AppMinMax from '~c/inputs/minmax'
 
 import cartModel from '~s/cart.js'
-import router from '~s/router.js'
 
 import {observer} from 'mobx-react'
 
 @observer class Cart extends React.Component{
-    prevStep() {
-        router.moveTo('order')
-    }
-
     render(){
         let productsRows = cartModel.products.map((product, i) => {
             return (
