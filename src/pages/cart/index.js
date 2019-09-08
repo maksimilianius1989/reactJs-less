@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import AppMinMax from '~c/inputs/minmax'
 import cartModel from '~s/cart'
 import router from '~s/router'
+import {observer} from "mobx-react"
 
-export default class extends React.Component {
+export default @observer class extends React.Component {
     static propTypes = {
         onSend: PropTypes.func.isRequired
     }
