@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './app.module.css'
 import {observer} from 'mobx-react'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import routes from '~/routes'
 
 @observer class App extends React.Component{
@@ -18,7 +18,9 @@ import routes from '~/routes'
         return (
             <Router>
                 <div className="container">
-                    {routesComponents}
+                    <Switch>
+                        {routesComponents}
+                    </Switch>
                 </div>
             </Router>
         )

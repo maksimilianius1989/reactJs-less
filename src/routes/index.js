@@ -1,6 +1,7 @@
 import Order from '~p/order'
 import Cart from '~p/cart'
 import Result from '~p/result'
+import E404 from '~p/error404'
 
 let routes = [
     {
@@ -20,7 +21,13 @@ let routes = [
         url: '/done',
         component: Result,
         exact: true
-    }
+    },
+    {
+        name: '404',
+        url: '**',
+        component: E404,
+        exact: true
+    },
 ]
 
 let routesMap = {}
