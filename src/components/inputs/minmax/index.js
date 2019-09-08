@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import AppLazyInput from '~c/inputs/lazy'
 import styles from './minmax.module.css'
 
-export default class extends React.Component{
+export default class extends React.PureComponent{
     static defaultProps = {
         onChange: function(cnt){}
     }
@@ -41,6 +41,7 @@ export default class extends React.Component{
     }
 
     render(){
+        console.log('--------------->', 'minmax render')
         return (
             <div>
                 <button onClick={this.decrease}>-</button>

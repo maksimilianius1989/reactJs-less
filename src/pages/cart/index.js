@@ -8,6 +8,10 @@ import router from '~s/router.js'
 import {observer} from 'mobx-react'
 
 @observer class Cart extends React.Component{
+    prevStep() {
+        router.moveTo('order')
+    }
+
     render(){
         let productsRows = cartModel.products.map((product, i) => {
             return (
@@ -18,7 +22,7 @@ import {observer} from 'mobx-react'
                         <AppMinMax min={1} 
                                    max={product.rest} 
                                    cnt={product.current} 
-                                   onChange={(cnt) => cartModel.change(i, cnt)}
+                                   onChange={cartModel.changeOn[i]}
                         />
                     </td>
                     <td>{product.price * product.current}</td>
@@ -50,7 +54,7 @@ import {observer} from 'mobx-react'
                 </table>
                 <h3>Total: {cartModel.total}</h3>
                 <hr/>
-                <button className="btn btn-primary" onClick={() => router.moveTo('order')}>
+                <button className="btn btn-primary" onClick={this.prevStep}>
                     Send
                 </button>
             </div>
