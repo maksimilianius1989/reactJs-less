@@ -38,6 +38,11 @@ export default @observer class extends React.Component{
                         value={field.value}
                         onChange={(e) => orderModel.change(name, e.target.value)}
                     />
+                    {field.valid === null || field.valid ? '' :
+                        <Form.Text className="text-muted">
+                            {field.errorText}
+                        </Form.Text>
+                    }
                 </Form.Group>
             )
         }
@@ -53,7 +58,11 @@ export default @observer class extends React.Component{
                     Back to cart
                 </Button>
                 &nbsp;
-                <Button variant="primary" onClick={this.show}>
+                <Button
+                    variant="primary"
+                    onClick={this.show}
+                    disabled={!orderModel.formValid}
+                >
                     Apply order
                 </Button>
                 <Modal show={this.state.showModal} backdrop="static" onHide={this.hide}>

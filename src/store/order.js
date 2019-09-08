@@ -5,19 +5,34 @@ class Order{
         name: {
             value: '',
             label: 'Your name',
+            validator: val => /^[aA-zZ]{2,}$/.test(val),
+            errorText: "Латинские символы не мение 2-х",
+            valid: null
         },
         phone: {
             value: '',
             label: 'Phone',
+            validator: val => /^[0-9]{7,15}$/.test(val),
+            errorText: "От 7 до 15 цифр",
+            valid: null
         },
         email: {
             value: '',
             label: 'Email',
+            validator: val => /^.+@.+$/.test(val),
+            errorText: "Собака",
+            valid: null
         },
     }
 
+    @computed get formValid() {
+        return Object.values(this.formData).every(field => field.valid)
+    }
+
     @action change(key, value){
-        this.formData[key].value = value
+        let field = this.formData[key]
+        field.value = value
+        field.valid = field.validator(field.value)
     }
 }
 
