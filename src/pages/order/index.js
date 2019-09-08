@@ -4,6 +4,7 @@ import {Form, Button, Modal} from 'react-bootstrap'
 import {observer} from 'mobx-react'
 import orderModel from '~s/order'
 import router from '~s/router'
+import cartModel from '~s/cart'
 
 export default @observer class extends React.Component{
     state = {
@@ -55,12 +56,12 @@ export default @observer class extends React.Component{
                 <Button variant="primary" onClick={this.show}>
                     Apply order
                 </Button>
-                <Modal show={this.state.showModal} backdrop="static">
+                <Modal show={this.state.showModal} backdrop="static" onHide={this.hide}>
                     <Modal.Header closeButton>
                         <Modal.Title>Check information</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        content
+                        Total cart: {cartModel.total}
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.hide}>
