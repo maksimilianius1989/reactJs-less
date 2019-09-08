@@ -23,17 +23,17 @@ let routes = [
         exact: true
     },
     {
-        name: '404',
         url: '**',
         component: E404,
-        exact: true
     },
 ]
 
 let routesMap = {}
 
 routes.forEach((route) => {
-    routesMap[route.name] = route.url
+    if (route.hasOwnProperty('name')) {
+        routesMap[route.name] = route.url
+    }
 })
 
 export default routes
