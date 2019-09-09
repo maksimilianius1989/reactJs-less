@@ -4,6 +4,8 @@ import {Form, Button, Modal} from 'react-bootstrap'
 import {observer} from 'mobx-react'
 import orderModel from '~s/order'
 import cartModel from '~s/cart'
+import {Link} from "react-router-dom"
+import {routesMap} from "~/routes"
 
 export default @observer class extends React.Component{
     state = {
@@ -20,7 +22,7 @@ export default @observer class extends React.Component{
 
     confirm = () => {
         this.hide()
-        router.moveTo('result')
+        this.props.history.push(routesMap.result)
     }
 
     render(){
@@ -53,9 +55,7 @@ export default @observer class extends React.Component{
                 <Form>
                     {formFields}
                 </Form>
-                <Button variant="warning" onClick={() => router.moveTo('cart')}>
-                    Back to cart
-                </Button>
+                <Link className="btn btn-warning" to={routesMap.home}>Back to cart</Link>
                 &nbsp;
                 <Button
                     variant="primary"
