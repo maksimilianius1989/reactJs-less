@@ -8,21 +8,22 @@ import {routesMap} from "~/routes"
 
 @observer class Cart extends React.Component{
     render(){
-        let productsRows = cartModel.products.map((product, i) => {
+        let productsRows = cartModel.productsDetailed.map((product, i) => {
             return (
                 <tr key={product.id}>
                     <td>{product.title}</td>
                     <td>{product.price}</td>
                     <td>
-                        <AppMinMax min={1} 
-                                   max={product.rest} 
-                                   cnt={product.current} 
-                                   onChange={cartModel.changeOn[i]}
+                        <AppMinMax
+                            min={1}
+                            max={product.rest}
+                            cnt={product.cnt}
+                            onChange={(cnt) => cartModel.change(product.id, cnt)}
                         />
                     </td>
-                    <td>{product.price * product.current}</td>
+                    <td>{product.price * product.cnt}</td>
                     <td>
-                        <button onClick={() => cartModel.remove(i)}>
+                        <button onClick={() => cartModel.remove(product.id)}>
                             X
                         </button>
                     </td>
