@@ -1,6 +1,10 @@
 import {observable, computed, action} from 'mobx'
 
-class Order{
+export default class {
+    constructor(rootStore) {
+        this.rootStore = rootStore
+    }
+
     @observable formData = {
         name: {
             value: '',
@@ -43,19 +47,6 @@ class Order{
         field.valid = field.validator(field.value)
     }
 }
-
-export default new Order()
-
-
-
-
-
-
-
-
-
-
-
 
 // server api
 function getProducts(){

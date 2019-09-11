@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import AppMinMax from '~c/inputs/minmax'
-import cartModel from '~s/cart.js'
-import {observer} from 'mobx-react'
+import {inject, observer} from 'mobx-react'
 import {Link} from 'react-router-dom'
 import {routesMap} from "~/routes"
 
-@observer class Cart extends React.Component{
+@inject('stores') @observer class Cart extends React.Component{
     render(){
+        let cartModel = this.props.stores.cart
+
         let productsRows = cartModel.productsDetailed.map((product, i) => {
             return (
                 <tr key={product.id}>
@@ -46,7 +47,7 @@ import {routesMap} from "~/routes"
                     </thead>
                     <tbody>
                         {productsRows}
-                    </tbody> 
+                    </tbody>
                 </table>
                 <h3>Total: {cartModel.total}</h3>
                 <hr/>

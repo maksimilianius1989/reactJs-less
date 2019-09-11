@@ -3,6 +3,7 @@ import styles from './app.module.css'
 import {observer, Provider} from 'mobx-react'
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
 import routes, {routesMap} from '~/routes'
+import store from '~s'
 
 @observer class App extends React.Component{
     render(){
@@ -16,7 +17,7 @@ import routes, {routesMap} from '~/routes'
         })
 
         return (
-            <Provider>
+            <Provider stores={store}>
                 <Router>
                     header
                     <hr/>
