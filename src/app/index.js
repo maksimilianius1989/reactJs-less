@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './app.module.css'
-import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch, NavLink} from 'react-router-dom'
 import routes, {routesMap} from '~/routes'
 import withStore from '~/hocs/withStore'
 
@@ -42,13 +42,28 @@ class App extends React.Component{
                         <div className="col col-3">
                             <ul className="list-group">
                                 <li className="list-group-item">
-                                    <Link to={routesMap.home}>Home</Link>
+                                    <NavLink
+                                        to={routesMap.home}
+                                        activeClassName={styles.active}
+                                        exact>
+                                        Home
+                                    </NavLink>
                                 </li>
                                 <li className="list-group-item">
-                                    <Link to={routesMap.cart}>Cart</Link>
+                                    <NavLink
+                                        to={routesMap.cart}
+                                        activeClassName={styles.active}
+                                    >
+                                        Cart
+                                    </NavLink>
                                 </li>
                                 <li className="list-group-item">
-                                    <Link to={routesMap.order}>Order now</Link>
+                                    <NavLink
+                                        to={routesMap.order}
+                                        activeClassName={styles.active}
+                                    >
+                                        Order now
+                                    </NavLink>
                                 </li>
                             </ul>
                         </div>
