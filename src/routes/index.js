@@ -20,7 +20,7 @@ let routes = [
     },
     {
         name: 'cart',
-        url: '/',
+        url: '/cart',
         component: Cart,
         exact: true
     },

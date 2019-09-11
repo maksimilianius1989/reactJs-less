@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './app.module.css'
 import {observer} from 'mobx-react'
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import routes from '~/routes'
+import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
+import routes, {routesMap} from '~/routes'
 
 @observer class App extends React.Component{
     render(){
@@ -18,9 +18,26 @@ import routes from '~/routes'
         return (
             <Router>
                 <div className="container">
-                    <Switch>
-                        {routesComponents}
-                    </Switch>
+                    <div className="row">
+                        <div className="col col-3">
+                            <ul className="list-group">
+                                <li className="list-group-item">
+                                    <Link to={routesMap.home}>Home</Link>
+                                </li>
+                                <li className="list-group-item">
+                                    <Link to={routesMap.cart}>Cart</Link>
+                                </li>
+                                <li className="list-group-item">
+                                    <Link to={routesMap.order}>Order now</Link>
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="col col-9">
+                            <Switch>
+                                {routesComponents}
+                            </Switch>
+                        </div>
+                    </div>
                 </div>
             </Router>
         )
