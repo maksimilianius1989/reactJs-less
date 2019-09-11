@@ -17,6 +17,8 @@ import routes, {routesMap} from '~/routes'
 
         return (
             <Router>
+                header
+                <hr/>
                 <div className="container">
                     <div className="row">
                         <div className="col col-3">

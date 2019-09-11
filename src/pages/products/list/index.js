@@ -24,8 +24,11 @@ export default function(props) {
     })
 
     return (
-        <div className="row">
-            {productsCards}
+        <div>
+            <h1>Products page</h1>
+            <div className="row">
+                {productsCards}
+            </div>
         </div>
     )
 }
