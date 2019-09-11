@@ -4,6 +4,7 @@ import AppMinMax from '~c/inputs/minmax'
 import {Link} from 'react-router-dom'
 import {routesMap} from "~/routes"
 import withStore from '~/hocs/withStore'
+import LinkButton from '~c/links/button'
 
 class Cart extends React.Component{
     render(){
@@ -52,6 +53,8 @@ class Cart extends React.Component{
                 <h3>Total: {cartModel.total}</h3>
                 <hr/>
                 <Link to={routesMap.order}  className="btn btn-primary">Send</Link>
+                &nbsp;
+                <LinkButton to={routesMap.order}  className="btn btn-primary">Send</LinkButton>
             </div>
         )
     }
