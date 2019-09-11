@@ -1,12 +1,13 @@
 import React from 'react'
 import styles from './app.module.css'
-import {observer, Provider} from 'mobx-react'
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
 import routes, {routesMap} from '~/routes'
-import store from '~s'
+import withStore from '~/hocs/withStore'
 
-@observer class App extends React.Component{
+class App extends React.Component{
     render(){
+        let cart = this.props.stores.cart;
+
         let routesComponents = routes.map((route) => {
             return <Route
                         path={route.url}
@@ -17,36 +18,50 @@ import store from '~s'
         })
 
         return (
-            <Provider stores={store}>
-                <Router>
-                    header
-                    <hr/>
+            <Router>
+                <header>
                     <div className="container">
-                        <div className="row">
-                            <div className="col col-3">
-                                <ul className="list-group">
-                                    <li className="list-group-item">
-                                        <Link to={routesMap.home}>Home</Link>
-                                    </li>
-                                    <li className="list-group-item">
-                                        <Link to={routesMap.cart}>Cart</Link>
-                                    </li>
-                                    <li className="list-group-item">
-                                        <Link to={routesMap.order}>Order now</Link>
-                                    </li>
-                                </ul>
+                        <hr/>
+                        <div className="row justify-content-between">
+                            <div className="col col-4">
+                                <div className="alert alert-success">Site name</div>
                             </div>
-                            <div className="col col-9">
-                                <Switch>
-                                    {routesComponents}
-                                </Switch>
+                            <div className="col col-3">
+                                <strong>
+                                    In Cart: {cart.cartCnt}
+                                    <br/>
+                                    Total: {cart.total}
+                                </strong>
                             </div>
                         </div>
+                        <hr/>
                     </div>
-                </Router>
-            </Provider>
+                </header>
+                <div className="container">
+                    <div className="row">
+                        <div className="col col-3">
+                            <ul className="list-group">
+                                <li className="list-group-item">
+                                    <Link to={routesMap.home}>Home</Link>
+                                </li>
+                                <li className="list-group-item">
+                                    <Link to={routesMap.cart}>Cart</Link>
+                                </li>
+                                <li className="list-group-item">
+                                    <Link to={routesMap.order}>Order now</Link>
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="col col-9">
+                            <Switch>
+                                {routesComponents}
+                            </Switch>
+                        </div>
+                    </div>
+                </div>
+            </Router>
         )
     }
 }
 
-export default App
+export default withStore(App)
