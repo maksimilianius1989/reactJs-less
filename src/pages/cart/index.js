@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import AppMinMax from '~c/inputs/minmax'
-import {inject, observer} from 'mobx-react'
 import {Link} from 'react-router-dom'
 import {routesMap} from "~/routes"
+import withStore from '~/hocs/withStore'
 
-@inject('stores') @observer class Cart extends React.Component{
+class Cart extends React.Component{
     render(){
         let cartModel = this.props.stores.cart
 
@@ -57,4 +57,4 @@ import {routesMap} from "~/routes"
     }
 }
 
-export default Cart
+export default withStore(Cart)
