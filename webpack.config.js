@@ -31,7 +31,7 @@ let conf = {
                 }
             },
             {
-                test: /\-module\.css$/,
+                test: /\.module\.css$/,
                 exclude: /node_modules/,
                 use: [
                     {
@@ -52,7 +52,7 @@ let conf = {
                 ]
             },
             {
-                test: /^((?!\-module).)*css$/,
+                test: /^((?!\.module).)*css$/,
                 use: [
                     {
                         loader: MiniCssExtractPlugin.loader,

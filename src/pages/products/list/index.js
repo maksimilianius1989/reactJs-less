@@ -21,7 +21,9 @@ export default observer(function(props) {
             </Button>
         }
 
-        return (<div className={"col col-4" + styles.col} key={product.id}>
+        console.log('--------------->', 'styles', styles)
+
+        return (<div className={"col col-4 " + styles.col} key={product.id}>
             <Card>
                 <Card.Body>
                     <Card.Title>{product.title}</Card.Title>
