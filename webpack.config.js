@@ -75,6 +75,7 @@ let conf = {
     },
     devServer: {
         historyApiFallback: true,
+        overlay: true,
         proxy: {
             '/reactcourseapi/**' : {
                 target: 'http://localhost',
