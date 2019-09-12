@@ -20,9 +20,9 @@ import {inject, observer} from "mobx-react"
                         title={product.title}
                         price={product.price}
                         backUrl={routesMap.home}
-                        inCart={cart.inCart(id)}
-                        onAdd={() => cart.add(id)}
-                        onRemove={() => cart.remove(id)}
+                        inCart={cart.inCart(product.id)}
+                        onAdd={() => cart.add(product.id)}
+                        onRemove={() => cart.remove(product.id)}
                     />
         }
     }
