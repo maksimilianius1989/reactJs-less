@@ -10,6 +10,7 @@ import {inject, observer} from "mobx-react"
     render() {
         let id = this.props.match.params.id
         let product = this.props.stores.products.getById(id)
+        let cart = this.props.stores.cart
 
         if (product === null) {
             return <E404 />
@@ -19,6 +20,9 @@ import {inject, observer} from "mobx-react"
                         title={product.title}
                         price={product.price}
                         backUrl={routesMap.home}
+                        inCart={cart.inCart(id)}
+                        onAdd={() => cart.add(id)}
+                        onRemove={() => cart.remove(id)}
                     />
         }
     }
