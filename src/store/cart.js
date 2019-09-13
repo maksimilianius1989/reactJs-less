@@ -1,11 +1,14 @@
 import {observable, computed, action} from 'mobx'
 
 export default class {
+    @observable products = []
+
     constructor(rootStore) {
         this.rootStore = rootStore
+        this.api = this.rootStore.api.cart
+        this.storage = this.rootStore.storage
+        this.token = this.storage.getItem("cartToken")
     }
-
-    @observable products = []
 
     @computed get productsDetailed() {
         return this.products.map((pr) => {
@@ -26,6 +29,17 @@ export default class {
         return this.productsDetailed.reduce((t, pr) => {
             return t + pr.price * pr.cnt
         }, 0)
+    }
+
+    @action load() {
+        this.api.load(this.token).then((data) => {
+            this.products = data.cart
+            console.log('--------------->', data)
+            if (data.needUpdate) {
+                this.token = data.token
+                this.storage.setItem('cartToken', this.token)
+            }
+        })
     }
 
     @action add(id) {

@@ -13,3 +13,5 @@ store.products.load().then(() => {
         document.querySelector('#app')
     )
 })
+
+store.cart.load()
