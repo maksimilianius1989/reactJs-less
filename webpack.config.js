@@ -78,7 +78,7 @@ let conf = {
         overlay: true,
         proxy: {
             '/reactcourseapi/**' : {
-                target: 'http://localhost',
+                target: 'http://reactjs-less.loc',
                 secure: false,
                 changeOrigin: true
             }
