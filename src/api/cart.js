@@ -13,4 +13,8 @@ function add(token, id) {
     return makeRequest(`cart/add.php?token=${token}&id=${id}`)
 }
 
-export { load, add }
+function remove(token, id) {
+    return makeRequest(`cart/remove.php?token=${token}&id=${id}`)
+}
+
+export { load, add, remove }

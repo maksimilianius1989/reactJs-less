@@ -60,7 +60,9 @@ export default class {
     @action remove(id){
         let index = this.isFindId(id)
         if (index !== -1) {
-            this.products.splice(index, 1)
+            this.api.remove(this.token, id).then((res) => {
+                this.products.splice(index, 1)
+            })
         }
     }
 
