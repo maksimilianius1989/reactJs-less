@@ -43,7 +43,11 @@ export default class {
     }
 
     @action add(id) {
-        this.products.push({id, cnt: 1})
+        this.api.add(this.token, id).then((res) => {
+            if (res) {
+                this.products.push({id, cnt: 1})
+            }
+        })
     }
 
     @action change(id, cnt){

@@ -9,4 +9,8 @@ function load(token) {
     return makeRequest(url)
 }
 
-export {load}
+function add(token, id) {
+    return makeRequest(`cart/add.php?token=${token}&id=${id}`)
+}
+
+export { load, add }
