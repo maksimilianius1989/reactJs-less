@@ -19,9 +19,11 @@ export default class {
     }
 
     @action load() {
-        console.log('--------------->', 'load store')
-        this.api.all().then(data => {
-            this.items = data
+        return new Promise((resolve, reject) => {
+            this.api.all().then(data => {
+                this.items = data
+                resolve(true)
+            })
         })
     }
 
