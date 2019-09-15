@@ -13,12 +13,19 @@ import {inject, observer} from "mobx-react"
         let productsCards = productModel.items.map((product) => {
             let btn;
             if (cartModel.inCart(product.id)) {
-                btn = <Button variant="danger" onClick={() => cartModel.remove(product.id)}>
+                btn = <Button
+                        variant="danger"
+                        onClick={() => cartModel.remove(product.id)}
+                >
                     Remove from cart
                 </Button>
             }
             else {
-                btn = <Button variant="success" onClick={() => cartModel.add(product.id)}>
+                btn = <Button
+                        variant="success"
+                        onClick={() => cartModel.add(product.id)}
+                        disabled={product.id in cartModel.processId}
+                >
                     Add to cart
                 </Button>
             }

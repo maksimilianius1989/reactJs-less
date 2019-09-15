@@ -2,6 +2,7 @@ import {observable, computed, action} from 'mobx'
 
 export default class {
     @observable products = []
+    @observable processId = {}
 
     constructor(rootStore) {
         this.rootStore = rootStore
@@ -43,9 +44,12 @@ export default class {
     }
 
     @action add(id) {
+        this.processId[id] = true
+
         this.api.add(this.token, id).then((res) => {
             if (res) {
                 this.products.push({id, cnt: 1})
+                delete this.processId[id]
             }
         })
     }
