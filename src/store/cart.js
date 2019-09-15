@@ -57,11 +57,15 @@ export default class {
     }
 
     @action change(id, cnt){
-        let index = this.isFindId(id)
-        if (index !== -1) {
-            this.api.changeCnt(this.token, id, cnt).then((res) => {
-                this.products[index].cnt = cnt
-            })
+        if (!(id in this.processId)) {
+            let index = this.isFindId(id)
+            if (index !== -1) {
+                this.processId[id] = true
+                this.api.changeCnt(this.token, id, cnt).then((res) => {
+                    this.products[index].cnt = cnt
+                    delete this.processId[id]
+                })
+            }
         }
     }
 
