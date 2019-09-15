@@ -53,7 +53,9 @@ export default class {
     @action change(id, cnt){
         let index = this.isFindId(id)
         if (index !== -1) {
-            this.products[index].cnt = cnt
+            this.api.changeCnt(this.token, id, cnt).then((res) => {
+                this.products[index].cnt = cnt
+            })
         }
     }
 
@@ -64,6 +66,10 @@ export default class {
                 this.products.splice(index, 1)
             })
         }
+    }
+
+    @action clean() {
+        this.api.clean(this.token)
     }
 
     isFindId(id) {
