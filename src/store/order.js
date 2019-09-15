@@ -29,6 +29,13 @@ export default class {
         },
     }
 
+    @observable lastOrderCache = {
+        name: '',
+        email: '',
+        phone: '',
+        total: ''
+    }
+
     @computed get formValid() {
         return Object.values(this.formData).every(field => field.valid)
     }
@@ -46,38 +53,13 @@ export default class {
         field.value = value
         field.valid = field.validator(field.value)
     }
-}
 
-// server api
-function getProducts(){
-    return [
-        {
-            id: 100,
-            title: 'Ipnone 200',
-            price: 12000,
-            rest: 10,
-            current: 1
-        },
-        {
-            id: 101,
-            title: 'Samsung AAZ8',
-            price: 22000,
-            rest: 5,
-            current: 1
-        },
-        {
-            id: 103,
-            title: 'Nokia 3310',
-            price: 5000,
-            rest: 2,
-            current: 1
-        },
-        {
-            id: 105,
-            title: 'Huawei ZZ',
-            price: 15000,
-            rest: 8,
-            current: 1
+    @action send() {
+        this.lastOrderCache.total = this.rootStore.cart.total
+        for (let key in this.formData) {
+            this.lastOrderCache[key] = this.formData[key].value
         }
-    ]
+        // request to api
+        this.rootStore.cart.clean()
+    }
 }

@@ -52,8 +52,6 @@ class Cart extends React.Component{
                 </table>
                 <h3>Total: {cartModel.total}</h3>
                 <hr/>
-                <Link to={routesMap.order}  className="btn btn-primary">Send</Link>
-                &nbsp;
                 <LinkButton to={routesMap.order}  className="btn btn-primary">Send</LinkButton>
             </div>
         )
