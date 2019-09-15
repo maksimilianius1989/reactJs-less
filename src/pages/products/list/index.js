@@ -16,6 +16,7 @@ import {inject, observer} from "mobx-react"
                 btn = <Button
                         variant="danger"
                         onClick={() => cartModel.remove(product.id)}
+                        disabled={product.id in cartModel.processId}
                 >
                     Remove from cart
                 </Button>

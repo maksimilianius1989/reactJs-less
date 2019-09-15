@@ -44,14 +44,16 @@ export default class {
     }
 
     @action add(id) {
-        this.processId[id] = true
+        if (!(id in this.processId || this.inCart(id))) {
+            this.processId[id] = true
 
-        this.api.add(this.token, id).then((res) => {
-            if (res) {
-                this.products.push({id, cnt: 1})
-                delete this.processId[id]
-            }
-        })
+            this.api.add(this.token, id).then((res) => {
+                if (res) {
+                    this.products.push({id, cnt: 1})
+                    delete this.processId[id]
+                }
+            })
+        }
     }
 
     @action change(id, cnt){
@@ -64,11 +66,15 @@ export default class {
     }
 
     @action remove(id){
-        let index = this.isFindId(id)
-        if (index !== -1) {
-            this.api.remove(this.token, id).then((res) => {
-                this.products.splice(index, 1)
-            })
+        if (this.inCart(id) && !(id in this.processId)) {
+            let index = this.isFindId(id)
+            if (index !== -1) {
+                this.processId[id] = true
+                this.api.remove(this.token, id).then((res) => {
+                    this.products.splice(index, 1)
+                    delete this.processId[id]
+                })
+            }
         }
     }
 
