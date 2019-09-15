@@ -55,11 +55,15 @@ export default class {
     }
 
     @action send() {
-        this.lastOrderCache.total = this.rootStore.cart.total
-        for (let key in this.formData) {
-            this.lastOrderCache[key] = this.formData[key].value
-        }
-        // request to api
-        this.rootStore.cart.clean()
+        return new Promise((resolve, reject) => {
+            this.lastOrderCache.total = this.rootStore.cart.total
+            for (let key in this.formData) {
+                this.lastOrderCache[key] = this.formData[key].value
+            }
+            // request to api
+            this.rootStore.cart.clean().then(() => {
+                resolve()
+            })
+        })
     }
 }

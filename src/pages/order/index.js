@@ -19,9 +19,10 @@ import {routesMap} from "~/routes"
     }
 
     confirm = () => {
-        this.props.stores.order.send()
-        this.hide()
-        this.props.history.push(routesMap.result)
+        this.props.stores.order.send().then(() => {
+            this.hide()
+            this.props.history.push(routesMap.result)
+        })
     }
 
     render(){

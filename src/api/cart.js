@@ -22,11 +22,7 @@ function changeCnt(token, id, cnt) {
 }
 
 function clean(token) {
-    return makeRequest(`cart/clean.php?token=${token}`).then((res) => {
-        if (res) {
-            this.products = []
-        }
-    })
+    return makeRequest(`cart/clean.php?token=${token}`)
 }
 
 export { load, add, remove, changeCnt, clean }

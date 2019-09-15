@@ -69,7 +69,17 @@ export default class {
     }
 
     @action clean() {
-        this.api.clean(this.token)
+        return new Promise((resolve, reject) => {
+            this.api.clean(this.token).then((res) => {
+                if (res) {
+                    this.products = []
+                    resolve()
+                }
+                else {
+                    reject()
+                }
+            })
+        })
     }
 
     isFindId(id) {
