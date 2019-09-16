@@ -33,14 +33,19 @@ export default class {
     }
 
     @action load() {
-        this.api.load(this.token).then((data) => {
-            this.products = data.cart
-            console.log('--------------->', data)
-            if (data.needUpdate) {
-                this.token = data.token
-                this.storage.setItem('cartToken', this.token)
-            }
-        })
+        this.api
+            .load(this.token)
+            .then((data) => {
+                this.products = data.cart
+                console.log('--------------->', data)
+                if (data.needUpdate) {
+                    this.token = data.token
+                    this.storage.setItem('cartToken', this.token)
+                }
+            })
+            .catch(() => {
+
+            })
     }
 
     @action add(id) {

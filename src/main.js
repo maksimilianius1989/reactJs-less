@@ -12,6 +12,10 @@ store.products.load().then(() => {
         </Provider>,
         document.querySelector('#app')
     )
+
+    store.notifications.add('Some test 1')
+    store.notifications.add('Some test 2')
+    store.notifications.add('Some test 3')
 })
 
 store.cart.load()
