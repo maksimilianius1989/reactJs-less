@@ -1,7 +1,7 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
 
-function LinkButton(props) {
+function LinkButton(props){
     const {
         history,
         location,
@@ -10,8 +10,8 @@ function LinkButton(props) {
         to,
         ...other
     } = props
-
-    return <button {...props} onClick={(e) => history.push(to)} />
+    
+    return <button {...other} onClick={(e) => history.push(to)} />
 }
 
 export default withRouter(LinkButton)

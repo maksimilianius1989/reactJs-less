@@ -10,7 +10,7 @@ let conf = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: '[name].css',
+            filename: '[name].css'
         }),
     ],
     module: {
@@ -24,8 +24,8 @@ let conf = {
                         presets: ['@babel/preset-env'],
                         plugins: [
                             "@babel/plugin-transform-react-jsx",
-                            ["@babel/plugin-proposal-decorators", {"legacy": true}],
-                            ["@babel/plugin-proposal-class-properties", {"loose": true}]
+                            ["@babel/plugin-proposal-decorators", { "legacy": true }],
+                            ["@babel/plugin-proposal-class-properties", { "loose": true }]
                         ]
                     }
                 }
@@ -37,7 +37,7 @@ let conf = {
                     {
                         loader: MiniCssExtractPlugin.loader,
                         options: {
-                            hmr: process.env.NODE_ENV === 'development',
+                            hmr: process.env.NODE_ENV === 'development'
                         }
                     },
                     {
@@ -45,9 +45,9 @@ let conf = {
                         options: {
                             importLoaders: 1,
                             modules: {
-                                localIdentName: '[local]_[sha1:hash:hex:7]'
+                                localIdentName: '[local]__[sha1:hash:hex:7]'
                             }
-                        },
+                        }
                     }
                 ]
             },
@@ -59,7 +59,7 @@ let conf = {
                         options: {
                             hmr: process.env.NODE_ENV === 'development',
                         }
-                    },
+                    }, 
                     'css-loader'
                 ]
             }
@@ -77,8 +77,8 @@ let conf = {
         historyApiFallback: true,
         overlay: true,
         proxy: {
-            '/reactcourseapi/**' : {
-                target: 'http://reactjs-less.loc',
+            '/reactcourseapi/**': {
+                target: 'http://faceprog.ru',
                 secure: false,
                 changeOrigin: true
             }
@@ -88,16 +88,16 @@ let conf = {
         splitChunks: {
             cacheGroups: {
                 vendors: {
-                    name: 'chunk-vendors',
+                    name: `chunk-vendors`,
                     test: /[\\/]node_modules[\\/]/,
                     priority: -10,
                     chunks: 'initial'
                 },
                 common: {
-                    name: 'chunk-common',
+                    name: `chunk-common`,
                     minChunks: 2,
                     priority: -20,
-                    chunks: "initial",
+                    chunks: 'initial',
                     reuseExistingChunk: true
                 }
             }

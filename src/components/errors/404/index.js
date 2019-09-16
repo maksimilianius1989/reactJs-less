@@ -1,16 +1,15 @@
 import React from 'react'
-import {Link} from "react-router-dom"
-import {routesMap} from "~/routes"
+import { routesMap } from '~/routes'
+import { Link } from 'react-router-dom'
 
-export default function() {
+export default function(){
     return (
         <>
             <h1>Error 404, page not found</h1>
             <hr/>
             <div className="alert alert-warning">
                 <p>
-                    Go to
-                    <Link to={routesMap.home}>home page</Link>
+                    <Link to={routesMap.home}>Go to home page</Link>
                 </p>
             </div>
         </>

@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import AppMinMax from '~c/inputs/minmax'
-import {Link} from 'react-router-dom'
-import {routesMap} from "~/routes"
+import { routesMap } from '~/routes'
+import { Link } from 'react-router-dom'
 import withStore from '~/hocs/withStore'
 import LinkButton from '~c/links/button'
 
@@ -16,19 +16,18 @@ class Cart extends React.Component{
                     <td>{product.title}</td>
                     <td>{product.price}</td>
                     <td>
-                        <AppMinMax
-                            min={1}
-                            max={product.rest}
-                            cnt={product.cnt}
+                        <AppMinMax 
+                            min={1} 
+                            max={product.rest} 
+                            cnt={product.cnt} 
                             onChange={(cnt) => cartModel.change(product.id, cnt)}
                             disabled={product.id in cartModel.processId}
                         />
                     </td>
                     <td>{product.price * product.cnt}</td>
                     <td>
-                        <button
-                            onClick={() => cartModel.remove(product.id)}
-                            disabled={product.id in cartModel.processId}
+                        <button onClick={() => cartModel.remove(product.id)}
+                                disabled={product.id in cartModel.processId}
                         >
                             X
                         </button>
@@ -52,11 +51,16 @@ class Cart extends React.Component{
                     </thead>
                     <tbody>
                         {productsRows}
-                    </tbody>
+                    </tbody> 
                 </table>
                 <h3>Total: {cartModel.total}</h3>
                 <hr/>
-                <LinkButton to={routesMap.order}  className="btn btn-primary">Send</LinkButton>
+                <Link to={routesMap.order} className="btn btn-primary">
+                    Send
+                </Link>&nbsp
+                <LinkButton to={routesMap.order} className="btn btn-primary">
+                    Send
+                </LinkButton>
             </div>
         )
     }

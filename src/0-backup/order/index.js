@@ -55,7 +55,7 @@ export default class extends React.Component{
                 <Button variant="warning" onClick={this.props.onBack}>
                     Back to cart
                 </Button>
-                &nbsp;
+                &nbsp
                 <Button variant="primary" onClick={this.show}>
                     Apply order
                 </Button>

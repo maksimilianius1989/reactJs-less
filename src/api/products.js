@@ -1,7 +1,7 @@
 import makeRequest from './helpers/makeRequest'
 
-function all() {
+function all(){
     return makeRequest('products/all.php')
 }
 
-export {all}
+export { all }

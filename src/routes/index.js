@@ -1,7 +1,7 @@
-import Order from '~p/order'
-import Cart from '~p/cart'
-import Result from '~p/result'
-import E404 from '~p/error404'
+import Cart from '~p/Cart'
+import Order from '~p/Order'
+import Result from '~p/Result'
+import Page404 from '~p/error404'
 import ProductList from '~p/products/list'
 import ProductItem from '~p/products/item'
 
@@ -38,26 +38,29 @@ let routes = [
     },
     {
         url: '**',
-        component: E404,
-    },
+        component: Page404
+    }
 ]
 
 let routesMap = {}
 
 routes.forEach((route) => {
-    if (route.hasOwnProperty('name')) {
+    if(route.hasOwnProperty('name')){
         routesMap[route.name] = route.url
     }
 })
 
-let urlBuilder = function (name, params) {
-    if (!routesMap.hasOwnProperty(name)) {
-        null
+let urlBuilder = function(name, params){
+    if(!routesMap.hasOwnProperty(name)){
+        return null
     }
-    let url = routesMap[name]
-    for (let key in params) {
+
+    let url = routesMap[name] // news/:id
+
+    for(let key in params){
         url = url.replace(':' + key, params[key])
     }
+
     return url
 }
 

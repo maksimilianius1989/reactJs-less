@@ -1,6 +1,7 @@
-.active {
-    background-color: #ffa92e;
+.active{
+    color: red;
 }
-.my_item {
-    background-color: beige;
+
+.myItem{
+    background: #eee;
 }

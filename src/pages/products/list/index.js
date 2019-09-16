@@ -1,37 +1,36 @@
 import React from 'react'
-import {Card, Button} from 'react-bootstrap'
-import {urlBuilder} from "~/routes"
-import {Link} from "react-router-dom"
-import styles from "./index.module.css"
-import {inject, observer} from "mobx-react"
+import { Card, Button } from 'react-bootstrap'
+import { urlBuilder } from '~/routes'
+import { Link } from 'react-router-dom'
+import styles from './index.module.css'
+import {observer, inject} from 'mobx-react'
 
-@inject('stores') @observer class ProductList extends React.Component{
-    render() {
-        let cartModel = this.props.stores.cart
+@inject('stores') @observer class Products extends React.Component{
+    render(){
         let productModel = this.props.stores.products
+        let cart = this.props.stores.cart
 
-        let productsCards = productModel.items.map((product) => {
-            let btn;
-            if (cartModel.inCart(product.id)) {
-                btn = <Button
-                        variant="danger"
-                        onClick={() => cartModel.remove(product.id)}
-                        disabled={product.id in cartModel.processId}
+        let productsCards = productModel.items.map((product) => {  
+            let btn
+
+            if(cart.inCart(product.id)){
+                btn = <Button variant="danger" 
+                              onClick={() => cart.remove(product.id)}
+                              disabled={product.id in cart.processId}
                 >
                     Remove from cart
                 </Button>
             }
-            else {
-                btn = <Button
-                        variant="success"
-                        onClick={() => cartModel.add(product.id)}
-                        disabled={product.id in cartModel.processId}
+            else{
+                btn = <Button variant="success" 
+                              onClick={() => cart.add(product.id)}
+                              disabled={product.id in cart.processId}
                 >
                     Add to cart
                 </Button>
             }
 
-            return (<div className={"col col-4 " + styles.col} key={product.id}>
+            return <div className={'col col-4 ' + styles.col} key={product.id}>
                 <Card>
                     <Card.Body>
                         <Card.Title>{product.title}</Card.Title>
@@ -45,7 +44,7 @@ import {inject, observer} from "mobx-react"
                         {btn}
                     </Card.Body>
                 </Card>
-            </div>)
+            </div>
         })
 
         return (
@@ -54,9 +53,15 @@ import {inject, observer} from "mobx-react"
                 <div className="row">
                     {productsCards}
                 </div>
+                <hr/>
+                <button className="btn btn-danger" onClick={() => 
+                    this.props.stores.notifications.add(Math.random() + ' error!')
+                }>
+                    Test Error button
+                </button>
             </div>
         )
     }
 }
 
-export default ProductList
+export default Products

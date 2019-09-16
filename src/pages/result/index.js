@@ -1,6 +1,7 @@
 import React from 'react'
-import {Link} from "react-router-dom"
-import {routesMap, urlBuilder} from "~/routes"
+
+import { urlBuilder } from '~/routes'
+import { Link } from 'react-router-dom'
 import withStore from '~/hocs/withStore'
 
 class Result extends React.Component{
@@ -13,7 +14,7 @@ class Result extends React.Component{
                 <p>Hi, {data.name}!</p>
                 <p><strong>Total: {data.total}</strong></p>
                 <div>
-
+                    
                 </div>
             </div>
         )

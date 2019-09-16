@@ -13,7 +13,7 @@ export default class extends React.PureComponent{
         max: PropTypes.number.isRequired,
         cnt: PropTypes.number.isRequired,
         onChange: PropTypes.func,
-        disabled:PropTypes.bool
+        disabled: PropTypes.bool
     }
 
     lazyInput = React.createRef()
@@ -44,14 +44,13 @@ export default class extends React.PureComponent{
     render(){
         return (
             <div>
-                <button
-                    onClick={this.decrease}
-                    disabled={this.props.disabled
-                                || this.props.cnt <= this.props.min}
+                <button onClick={this.decrease}
+                        disabled={this.props.disabled || 
+                                  this.props.cnt <= this.props.min}
                 >-</button>
                 <AppLazyInput
                     nativeProps={{
-                        type: 'text',
+                        type: 'text', 
                         className: styles.input,
                         disabled: this.props.disabled
                     }}
@@ -59,11 +58,13 @@ export default class extends React.PureComponent{
                     onChange={this.onChange}
                     ref={this.lazyInput}
                 />
-                <button
-                    onClick={this.increase}
-                    disabled={this.props.disabled
-                                || this.props.cnt >= this.props.max}
-                >+</button>
+                <button onClick={this.increase}
+                        disabled={this.props.disabled || 
+                            this.props.cnt >= this.props.max}
+                
+                >
+                    +
+                </button>
             </div>
         )
     }
