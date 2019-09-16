@@ -1,4 +1,4 @@
-import {observable, computed, action, runInAction} from 'mobx'
+import {observable, computed, action} from 'mobx'
 
 export default class {
     @observable products = []
@@ -34,14 +34,12 @@ export default class {
 
     @action load() {
         this.api.load(this.token).then((data) => {
-            runInAction(() => {
-                this.products = data.cart
-
-                if (data.needUpdate) {
-                    this.token = data.token
-                    this.storage.setItem('cartToken', this.token)
-                }
-            })
+            this.products = data.cart
+            console.log('--------------->', data)
+            if (data.needUpdate) {
+                this.token = data.token
+                this.storage.setItem('cartToken', this.token)
+            }
         })
     }
 

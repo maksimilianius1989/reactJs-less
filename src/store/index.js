@@ -1,11 +1,8 @@
-import {configure} from "mobx"
 import cartStore from './cart'
 import productStore from './products'
 import orderStore from './order'
 import * as products from '~/api/products'
 import * as cart from '~/api/cart'
-
-configure({enforceActions: "observed"})
 
 class RootStore {
     constructor() {

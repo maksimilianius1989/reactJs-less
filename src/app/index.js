@@ -41,7 +41,7 @@ class App extends React.Component{
                     <div className="row">
                         <div className="col col-3">
                             <ul className="list-group">
-                                <li className="list-group-item">
+                                <li className={`list-group-item ${styles.my_item}`}>
                                     <NavLink
                                         to={routesMap.home}
                                         activeClassName={styles.active}
